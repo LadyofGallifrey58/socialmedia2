@@ -6,14 +6,17 @@ package socialmedia;
  * 
  * @author sburton
  */
-public class Demo implements Runnable {
+public class Demo implements Runnable  {
 
     @Override
     public void run() {
         // TODO: Add code here to run all three experiements
         
-        Experimenter experimenter = new Experimenter();
-        experimenter.runTest();
+        //True trueRun = new True();
+        //trueRun.runTest();
+        
+        RandomTrue randomRun = new RandomTrue();
+        randomRun.runTest();
     }
     
     /**

@@ -11,7 +11,7 @@ import java.util.Set;
  * 
  * @author sburton
  */
-public class Experimenter {
+public abstract class Experimenter {
     
     /**
      * Runs the Experiment and outputs the results
@@ -37,7 +37,7 @@ public class Experimenter {
      * Gets a filename from the user
      * @return 
      */
-    private String getFileName() {
+    public String getFileName() {
         System.out.println("Getting the filename from the user...");
         
         // In a real use case, this would prompt the user
@@ -50,7 +50,7 @@ public class Experimenter {
      * @param file
      * @return 
      */
-    private Set<SocialMediaEntry> loadEntriesFromFile(String file) {
+    public Set<SocialMediaEntry> loadEntriesFromFile(String file) {
         System.out.println("Reading social media entries from file '" + file + "' ...");
         
         Set<SocialMediaEntry> entries = new HashSet<>();
@@ -72,7 +72,7 @@ public class Experimenter {
      * @param entries
      * @return 
      */
-    private Set<SocialMediaEntry> loadTrainingData(Set<SocialMediaEntry> entries) {
+    public Set<SocialMediaEntry> loadTrainingData(Set<SocialMediaEntry> entries) {
         System.out.println("Loading the training set...");
         
         // In a real use case, this would partition the set, rather than return the whole thing.
@@ -87,7 +87,7 @@ public class Experimenter {
      * @param entries
      * @return 
      */
-    private Set<SocialMediaEntry> loadTestData(Set<SocialMediaEntry> entries) {
+    public Set<SocialMediaEntry> loadTestData(Set<SocialMediaEntry> entries) {
         System.out.println("Loading the test set...");
         
         // In a real use case, this would partition the set, rather than return the whole thing.
@@ -103,31 +103,14 @@ public class Experimenter {
      * @param testSet
      * @return A mapping of true or false to each entry in the test set.
      */
-    private Map<SocialMediaEntry, Boolean> classifyEntries(Set<SocialMediaEntry> trainingSet,
-            Set<SocialMediaEntry> testSet) {
-        
-        System.out.println("Running classifier...");
-        
-        // In a real use case, build a machine learning model from the training set,
-        // then use it to classify the entries in the test set.
-
-        
-        Map<SocialMediaEntry, Boolean> results = new HashMap<>();
-        
-        // Right now this is putting a "true" for everything
-        // TODO: This method will need to be changes / replaced.
-        for (SocialMediaEntry entry : testSet) {
-            results.put(entry, true);
-        }
-        
-        return results;
-    }
+    abstract public Map<SocialMediaEntry, Boolean> classifyEntries(Set<SocialMediaEntry> trainingSet,
+            Set<SocialMediaEntry> testSet);
     
     /**
      * Outputs the results of the experiment
      * @param results 
      */
-    private void outputResults(Map<SocialMediaEntry, Boolean> results) {
+    public void outputResults(Map<SocialMediaEntry, Boolean> results) {
         System.out.println("The results of your experiment are: \n");
         
         int correct = 0;
@@ -155,3 +138,39 @@ public class Experimenter {
         System.out.println("\nAccuracy: " + percent);
     }
 }
+/*{
+        
+        System.out.println("Running classifier...");
+        
+        // In a real use case, build a machine learning model from the training set,
+        // then use it to classify the entries in the test set.
+
+        
+        Map<SocialMediaEntry, Boolean> results = new HashMap<>();
+        
+        // Right now this is putting a "true" for everything
+        // TODO: This method will need to be changes / replaced.
+        for (SocialMediaEntry entry : testSet) {
+            results.put(entry, true);
+        }
+        
+        return results;
+    }*/
+/*{
+        
+        System.out.println("Running classifier...");
+        
+        // In a real use case, build a machine learning model from the training set,
+        // then use it to classify the entries in the test set.
+
+        
+        Map<SocialMediaEntry, Boolean> results = new HashMap<>();
+        
+        // Right now this is putting a "random" 
+        // TODO: This method will need to be changes / replaced.
+        for (SocialMediaEntry entry : testSet) {
+            results.put(entry, RANDOM);
+        }
+        
+        return results;
+    }*/
